@@ -1,0 +1,35 @@
+@keyframes funkyRotate1 {
+	0% {
+		transform: rotate(0deg);
+		opacity: 1
+	}
+	35% {
+		opacity: .8
+	}
+	90% {
+		opacity: 1;
+		transform: rotate(360deg)
+	}
+	100% {
+		opacity: 1;
+		transform: rotate(360deg)
+	}
+}
+
+@keyframes funkyRotate2 {
+	0% {
+		transform: rotate(0deg);
+		opacity: 1
+	}
+	50% {
+		opacity: .5
+	}
+	90% {
+		opacity: 1;
+		transform: rotate(720deg)
+	}
+	100% {
+		opacity: 1;
+		transform: rotate(720deg)
+	}
+}

@@ -15,7 +15,8 @@
 		"prod": "set NODE_ENV=production && npm run start",
 		"start:dev": "node devServer.js",
 		"start": "node prodServer.js",
-		"lint": "eslint src"
+		"lint": "eslint src",
+		"postinstall": "npm run build"
 	},
 	"repository": {
 		"type": "git",

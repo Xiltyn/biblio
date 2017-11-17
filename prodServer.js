@@ -7,10 +7,10 @@ const app = express();
 const compiler = webpack(config);
 const PORT = process.env.PORT || 3010;
 
-// app.use(require('webpack-dev-middleware')(compiler, {
-// 	noInfo: true,
-// 	publicPath: config.output.publicPath
-// }));
+app.use(require('webpack-dev-middleware')(compiler, {
+	noInfo: true,
+	publicPath: config.output.publicPath
+}));
 
 app.use('/assets', express.static('./assets'));
 

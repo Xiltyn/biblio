@@ -98,8 +98,8 @@ class SearchView extends React.Component {
 
 		result = result.sort(function(a, b){
 
-			if(a.ID < b.ID) return -1;
-			if(a.ID > b.ID) return 1;
+			if(a.surname > b.surname) return -1;
+			if(a.surname < b.surname) return 1;
 			return 0;
 		});
 

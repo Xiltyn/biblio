@@ -11,11 +11,10 @@
 		"clean": "rimraf dist",
 		"build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
 		"build": "npm run clean && npm run build:webpack",
-		"dev": "set NODE_ENV=development && npm start",
-		"prod": "set NODE_ENV=production && npm run start:prod",
-		"start": "node devServer.js",
-		"start:prod": "node prodServer.js",
-		"postinstall": "npm run prod",
+		"dev": "set NODE_ENV=development && npm start:dev",
+		"prod": "set NODE_ENV=production && npm run start",
+		"start:dev": "node devServer.js",
+		"start": "node prodServer.js",
 		"lint": "eslint src"
 	},
 	"repository": {

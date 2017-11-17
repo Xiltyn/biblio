@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3010;
 
 app.use(require('webpack-dev-middleware')(compiler, {
 	noInfo: true,
-	publicPath: config.output.publicPath
+	publicPath: '/dist'
 }));
 
 app.use('/assets', express.static('./assets'));

@@ -93,6 +93,9 @@ body {
 				left: 20%;
 			}
 		}
+		&:nth-of-type(2) {
+			width: auto
+		}
 	}
 	.filters-btn--active {
 		background-color: #fff;

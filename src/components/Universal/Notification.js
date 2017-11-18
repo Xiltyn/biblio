@@ -24,10 +24,10 @@ export default class Notification extends React.Component {
 				</p>
 				<div className='controls'>
 					<button className="update-btn" type="submit" onClick={this._handleSubmit}>
-						Potwierdź
+						Tak
 					</button>
 					<button className="submit-btn" onClick={this._handleHide}>
-						Anuluj
+						Nie
 					</button>
 				</div>
 			</div>

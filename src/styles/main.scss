@@ -465,6 +465,7 @@ body {
 		box-sizing: border-box;
 		&::placeholder {
 			transition: all .3s ease-in-out;
+			color: #000;
 		}
 		&:focus {
 			border-left: .4rem solid #2f88de;

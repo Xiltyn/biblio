@@ -31,6 +31,7 @@ class SearchView extends React.Component {
 		this._handleFilters 			= this._handleFilters.bind(this);
 		this._handleScrollListener 		= this._handleScrollListener.bind(this);
 		this._returnSearchedRecords 	= this._returnSearchedRecords.bind(this);
+		this._handleSorting 			= this._handleSorting.bind(this);
 	}
 
 	_showMore() {
@@ -96,14 +97,16 @@ class SearchView extends React.Component {
 			});
 		}
 
-		result = result.sort(function(a, b){
-
-			if(a.surname < b.surname) return -1;
-			if(a.surname > b.surname) return 1;
+		return result;
+	}
+	_handleSorting(records, field) {
+		records.sort(function(a, b){
+			if(a[field] < b[field]) return -1;
+			if(a[field] > b[field]) return 1;
 			return 0;
 		});
 
-		return result;
+		return records
 	}
 	_returnSearchedRecords(records) {
 		let searchFilters = this.props.data.filters.keys;
@@ -138,7 +141,7 @@ class SearchView extends React.Component {
 	}
 
 	render() {
-		const library = this._returnSearchedRecords(this._handleFilters(this.props.data.library)).map((element, index) => {
+		const library = this._handleSorting(this._returnSearchedRecords(this._handleFilters(this.props.data.library)), 'surname').map((element, index) => {
 
 			if (this.state.searchString !== '') {
 				return (

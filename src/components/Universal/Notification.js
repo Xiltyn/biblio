@@ -10,6 +10,7 @@ export default class Notification extends React.Component {
 	_handleSubmit() {
 		this.props.onConfirm();
 		this._handleHide();
+		console.log(this.props.id)
 	}
 
 	_handleHide() {
@@ -23,11 +24,11 @@ export default class Notification extends React.Component {
 					{this.props.message}
 				</p>
 				<div className='controls'>
-					<button className="update-btn" type="submit" onClick={this._handleSubmit}>
-						Tak
+					<button className={this.props.altColours ? "submit-btn" : "update-btn"} type="submit" onClick={this._handleSubmit}>
+						{this.props.submitLabel}
 					</button>
-					<button className="submit-btn" onClick={this._handleHide}>
-						Nie
+					<button className={this.props.altColours ? "update-btn" : "submit-btn" } onClick={this._handleHide}>
+						{this.props.cancelLabel}
 					</button>
 				</div>
 			</div>
@@ -40,5 +41,7 @@ Notification.propTypes = {
 	typeClass: React.PropTypes.string.isRequired,
 	message: React.PropTypes.string.isRequired,
 	onConfirm: React.PropTypes.func.isRequired,
-	onClose: React.PropTypes.func.isRequired
+	onClose: React.PropTypes.func.isRequired,
+	submitLabel: React.PropTypes.string.isRequired,
+	cancelLabel: React.PropTypes.string.isRequired
 };

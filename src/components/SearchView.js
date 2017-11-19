@@ -77,26 +77,27 @@ class SearchView extends React.Component {
 
 		if ( categories.every(el => !el.active) ) {
 			_.map(records, (record, key ) => {
-				record.ID = key;
-				result = [...result, record]
+				if (record) {
+					record.ID = key;
+					result = [...result, record]
+				}
 			});
 		} else {
-			records.map(record => {
-				if (record.category) {
-					for (let i = 0; i < categories.length; i++) {
-						if (categories[i].active) {
-							if (record.category.toLowerCase() === categories[i].label.toLowerCase()) {
-								result = [...result, record];
+			_.map(records, (record, key ) => {
+				if (record) {
+					if (record.category) {
+						record.ID = key;
+						for (let i = 0; i < categories.length; i++) {
+							if (categories[i].active) {
+								if (record.category.toLowerCase() === categories[i].label.toLowerCase()) {
+									result = [...result, record];
+								}
 							}
 						}
 					}
 				}
-				else if (record.firstname) {
-					result = [...result, record];
-				}
 			});
 		}
-
 		return result;
 	}
 	_handleSorting(records, field) {
@@ -105,24 +106,38 @@ class SearchView extends React.Component {
 			if(a[field] > b[field]) return 1;
 			return 0;
 		});
-
 		return records
 	}
 	_returnSearchedRecords(records) {
 		let searchFilters = this.props.data.filters.keys;
 		let result = [];
 
-		searchFilters.map(key => {
-			if ( key.isActive ) {
-				records.map(record => {
-					if ( record[key.name] ) {
-						if (record[key.name].toLowerCase().includes(this.state.searchString.toLowerCase())) {
-							result = [...result, record]
+		if (this.state.searchString !== '') {
+			records.map(record => {
+
+				searchFilters.map(key => {
+					if ( key.isActive ) {
+						if ( record[key.name] ) {
+							if (record[key.name].toLowerCase().includes(this.state.searchString.toLowerCase()) ) {
+								// console.log('Key name :: ', key.name);
+								// console.log('String :: ', record[key.name]);
+								// console.log('Search String :: ', this.state.searchString);
+								// console.log('Result ::', result);
+								if ( result.filter(el => el.ID === record.ID).length === 0 ) {
+									result = [...result, record]
+								}
+								// console.log('Result ::', result);
+							}
 						}
 					}
 				})
-			}
-		});
+			});
+		} else {
+			records.map(record => {
+				result = [...result, record]
+			})
+		}
+
 
 		return result;
 	}
@@ -142,12 +157,13 @@ class SearchView extends React.Component {
 
 	render() {
 		const library = this._handleSorting(this._returnSearchedRecords(this._handleFilters(this.props.data.library)), 'surname').map((element, index) => {
+			// console.log(element)
 
-			if (this.state.searchString !== '') {
+			if (this.state.searchString.length >= 3) {
 				return (
-					<SearchElement callbackRemove={this._handleRemove} callbackEdit={this._handleUpdate} element={element} searchString={this.state.searchString} key={index}/>
+					<SearchElement callbackRemove={this._handleRemove} callbackEdit={this._handleUpdate} element={element} searchString={this.state.searchString} key={element.ID}/>
 				);
-			} else if (this.state.searchString === '' && (index < (this.state.recordsRendered * this.state.chunkShown))) {
+			} else if (this.state.searchString.length < 3 && (index < (this.state.recordsRendered * this.state.chunkShown))) {
 				return (
 					<SearchElement callbackRemove={this._handleRemove} callbackEdit={this._handleUpdate} element={element} searchString={this.state.searchString} key={index}/>
 				);

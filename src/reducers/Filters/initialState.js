@@ -61,10 +61,10 @@ export const initialState = {
 		},
 		{
 			id: 9,
-			isActive: true,
+			isActive: false,
 			name: 'year',
 			label: 'Rok wydania',
-			hidden: false
+			hidden: true
 		},
 		{
 			id: 10,

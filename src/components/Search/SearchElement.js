@@ -82,78 +82,83 @@ export default class SearchElement extends Component {
 	}
 
 	render() {
+
 		return (
 			<div className={"search-result " + (this.state.isActive ? 'isActive' : '')} onClick={this._showDetails}>
 
 				<Notification setActive={this.state.notifyRemove} typeClass="remove"
-							  message="Czy na pewno chcesz usunąć ten element?" onClose={this._handleNotificationClose}
-							  onConfirm={this._handleRemove}/>
+							  message="Czy na pewno chcesz usunąć ten element?"
+							  submitLabel='Tak, usuń' cancelLabel='Nie usuwaj'
+							  onClose={this._handleNotificationClose}
+							  altColours={true}
+							  onConfirm={this._handleRemove} id={this.state.data.ID}/>
 				<Notification setActive={this.state.notifyUpdate} typeClass="update"
+							  submitLabel='Tak' cancelLabel='Nie'
 							  message="Czy na pewno chcesz zatwierdzić zmiany?" onClose={this._handleNotificationClose}
-							  onConfirm={this._handleSubmit}/>
-				<div className="serach-result-image">
+							  onConfirm={this._handleSubmit} id={this.state.data.ID}/>
+				<div className="search-result-image">
 					<img src="/assets/img/placeholder.png" alt="placeholder"/>
 				</div>
 				<div className="info">
 					<div className="search-result-author">
 						<input type="text" onChange={this._handleInputs} name="surname"
-							   placeholder={this.props.element.surname}/>
+							   value={this.state.data.surname}/>
 						<input type="text" onChange={this._handleInputs} name="firstname"
-							   placeholder={this.props.element.firstname}/>
+							   value={this.state.data.firstname}/>
 					</div>
 					<div className="search-result-title">
-						<textarea onChange={this._handleInputs} name="title" placeholder={this.props.element.title}/>
+						<textarea onChange={this._handleInputs} name="title" value={this.state.data.title}/>
 					</div>
 					<div className="details">
 						<div className="search-result-year">
 							<h2>Rok:</h2><input type="text" onChange={this._handleInputs} name="year"
-												placeholder={this.props.element.year}/>
+												value={this.state.data.year}/>
 						</div>
 						<div className="search-result-place">
 							<h2>Miejsce:</h2><input type="text" onChange={this._handleInputs} name="place"
-													placeholder={this.props.element.place}/>
+													value={this.state.data.place}/>
 						</div>
 					</div>
 				</div>
-				<CategorySelector dispatchChosenCategoryID={this._handleCategorySelector} label={this.props.element.category}/>
+				<CategorySelector dispatchChosenCategoryID={this._handleCategorySelector} label={this.state.data.category}/>
 
 				{
 					this.state.isActive ? <div className="more-info">
 						<div className="search-result-more search-result-series"><h2>Seria:</h2><input type="text"
 																									   onChange={this._handleInputs}
 																									   name="series"
-																									   placeholder={this.props.element.series}/>
+																									   value={this.state.data.series}/>
 						</div>
 						<div className="search-result-more search-result-publisher"><h2>Wydawca:</h2><textarea
-							onChange={this._handleInputs} name="publisher" placeholder={this.props.element.publisher}/>
+							onChange={this._handleInputs} name="publisher" value={this.state.data.publisher}/>
 						</div>
 						<div className="search-result-more search-result-print"><h2>Drukarnia:</h2><input type="text"
 																										  onChange={this._handleInputs}
 																										  name="printingHouse"
-																										  placeholder={this.props.element.printingHouse}/>
+																										  value={this.state.data.printingHouse}/>
 						</div>
 						<div className="search-result-more search-result-format"><h2>Format:</h2> <input type="text"
 																										 onChange={this._handleInputs}
 																										 name="format"
-																										 placeholder={this.props.element.format}/>
+																										 value={this.state.data.format}/>
 						</div>
 						<div className="search-result-more search-result-pages"><h2>Ilość stron:</h2> <input type="text"
 																											 onChange={this._handleInputs}
 																											 name="pages"
-																											 placeholder={this.props.element.pages}/>
+																											 value={this.state.data.pages}/>
 						</div>
-						<div className="search-result-more search-result-appendices"><h2>Ilustracje:</h2> <textarea
+						<div className="search-result-more search-result-appendices"><h2>Ilustracje, załączniki:</h2> <textarea
 							type="text" onChange={this._handleInputs} name="appendices"
-							placeholder={this.props.element.appendices}/></div>
+							value={this.state.data.appendices}/></div>
 						<div className="search-result-more search-result-publishing-details"><h2>Opis oprawy:</h2>
 							<textarea type="text" onChange={this._handleInputs} name="publishingDetails"
-									  placeholder={this.props.element.publishingDetails}/></div>
-						<div className="search-result-more search-result-autographs"><h2>Dedykacje:</h2><textarea
+									  value={this.state.data.publishingDetails}/></div>
+						<div className="search-result-more search-result-autographs"><h2>Dedykacje, proweniencje:</h2><textarea
 							type="text" onChange={this._handleInputs} name="autographs"
-							placeholder={this.props.element.autographs}/></div>
+							value={this.state.data.autographs}/></div>
 						<div className="search-result-more search-result-description"><h2>Informacje:</h2><textarea
 							type="text" onChange={this._handleInputs} name="description"
-							placeholder={this.props.element.description}/></div>
+							defaultValue={this.state.data.description}/></div>
 						<div className="submit">
 							<button className="update-btn" onClick={() => {this._notify('update')}}>
 								Zastosuj
@@ -175,6 +180,14 @@ export default class SearchElement extends Component {
 		this.setState({
 			data: this.props.element
 		})
+	}
+
+	componentWillReceiveProps(newProps) {
+		if (this.state.data.ID !== newProps.element.ID) {
+			this.setState({
+				data: this.props.element
+			})
+		}
 	}
 }
 SearchElement.propTypes = {

@@ -72,7 +72,7 @@ export default class AddElement extends Component {
 	render() {
 		return (
 			<div className={"search-result addNew" + (this.state.isActive ? " isActive" : "")} onClick={this._showDetails}>
-				<Notification setActive={this.state.notifyAddNew} typeClass="add-new" message="Czy na pewno chcesz dodać element?" onConfirm={this._handleSubmit} onClose={this._hideDetails}/>
+				<Notification setActive={this.state.notifyAddNew} typeClass="add-new" message="Czy na pewno chcesz dodać element?" onConfirm={this._handleSubmit} onClose={this._hideDetails} cancelLabel="Nie" submitLabel="Tak"/>
 				{
 					!this.state.isActive ?
 						<div className="add-element">

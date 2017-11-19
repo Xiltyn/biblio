@@ -23,7 +23,7 @@ class TopNav extends Component {
 		return (
 			<ul className="main-app-nav">
 				<li className={this.props.showFilters ? "filters-btn--active" : ''} onClick={this._handleCLick}><div href="#">Filtry</div></li>
-				<li className="app-title"><h3>Biblioteka prof. Krzystofa Płeszki</h3></li>
+				<li className="app-title"><h3>Biblioteka profesora Krzysztofa Płeszki</h3></li>
 				<li onClick={this._handleLogout}><div href="#">Wyloguj</div></li>
 			</ul>
 		)

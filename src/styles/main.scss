@@ -454,20 +454,22 @@ body {
 		border: none;
 		position: relative;
 		font-size: 1rem;
+		line-height: 1.2rem;
 		outline: none;
 		width: 80%;
-		color: #2f88de;
+		color: #000;
 		font-family: 'Raleway', 'serif';
 		box-sizing: border-box;
 		border-left: .4rem solid rgba(#2f88de, 0);
 		transition: all .3s ease-in-out;
 		pointer-events: none;
-		box-sizing: border-box;
 		&::placeholder {
 			transition: all .3s ease-in-out;
+			font-weight: 600;
 			color: #000;
 		}
-		&:focus {
+		&:focus,
+		&:active {
 			border-left: .4rem solid #2f88de;
 			padding-left: .8rem;
 			color: #2f88de;
@@ -478,6 +480,10 @@ body {
 	}
 	textarea {
 		height: 2.4rem;
+		&:focus,
+		&:active {
+			height: 9.6rem;
+		}
 	}
 	&-image {
 		width: 200px;
@@ -515,7 +521,7 @@ body {
 				resize: none;
 				height: 4.8rem;
 				font-family: 'Fira Sans', 'serif';
-				font-weight: 200;
+				font-weight: 600;
 				font-size: 1.3rem;
 				line-height: 1.6rem;
 				color: #2f88de;
@@ -681,13 +687,12 @@ body {
 			flex-wrap: wrap;
 			flex-direction: row;
 			h2 {
-				width: 18%;
-				font-weight: 600;
+				width: 16%;
+				font-weight: 100;
 				font-size: 1rem;
 				line-height: 1.6rem;
 			}
 			textarea {
-				border: none;
 				outline: none;
 				resize: none;
 				box-sizing: border-box;
@@ -1261,7 +1266,7 @@ body {
 	left: 50%;
 	width: 320px;
 	margin-top: -120px;
-	margin-left: -40px;
+	margin-left: -160px;
 	background-color: #fff;
 	transform: translateX(-100vw);
 	transition: transform .3s ease-in-out;

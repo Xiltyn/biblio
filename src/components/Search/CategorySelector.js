@@ -60,6 +60,12 @@ class CategorySelector extends React.Component {
 			chosenCategoryLabel: this.props.label
 		}) : null;
 	}
+
+	componentWillReceiveProps(newProps) {
+		this.setState({
+			chosenCategoryLabel: newProps.label
+		})
+	}
 };
 
 CategorySelector.propTypes = {

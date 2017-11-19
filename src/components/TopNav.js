@@ -20,11 +20,17 @@ class TopNav extends Component {
 	}
 
 	render() {
+		console.log("Location :: ", this.props.location.pathname);
 		return (
+
 			<ul className="main-app-nav">
-				<li className={this.props.showFilters ? "filters-btn--active" : ''} onClick={this._handleCLick}><div href="#">Filtry</div></li>
-				<li className="app-title"><h3>Biblioteka profesora Krzysztofa Płeszki</h3></li>
-				<li onClick={this._handleLogout}><div href="#">Wyloguj</div></li>
+				{
+					this.props.location.pathname !== "/" ? <li className={this.props.showFilters ? "filters-btn--active" : ''} onClick={this._handleCLick}><div href="#">Filtry</div></li> : null
+				}
+				<li className="app-title" style={ { width: this.props.location.pathname === "/" ? '100%' : 'calc(100% - ( 2 * 280px ))' } }><h3>Biblioteka profesora Krzysztofa Płeszki</h3></li>
+				{
+					this.props.location.pathname !== "/" ? <li onClick={this._handleLogout}><div href="#">Wyloguj</div></li> : null
+				}
 			</ul>
 		)
 	}
@@ -34,7 +40,8 @@ TopNav.propTypes = {
 
 const mapStateToProps = (state) => {
 	return {
-		showFilters: state.filters.showFilters
+		showFilters: state.filters.showFilters,
+		location: state.routing.location
 	};
 };
 

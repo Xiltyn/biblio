@@ -575,28 +575,35 @@ body {
 			flex-direction: row;
 			.search-result-year {
 				font-size: 1rem;
-				font-weight: 600;
 				width: 100%;
 				display: flex;
 				flex-wrap: wrap;
 				h2 {
-					width: 22.5%
+					width: 22.5%;
+					padding-top: 0.3rem;
+					font-weight: 400
+				}
+				input {
+					font-weight: 600
 				}
 			}
 			.search-result-place {
 				font-size: 1rem;
 				padding: .4rem 0 .8rem;
-				font-weight: 600;
 				display: flex;
 				flex-wrap: wrap;
 				width: 100%;
 				margin: 0;
 				h2 {
-					width: 22.5%
+					padding-top: 0.3rem;
+					width: 22.5%;
+					font-weight: 400
 				}
 			}
 			input {
 				width: 75.5%;
+				font-weight: 600
+
 			}
 			.search-result-year,
 			.search-result-place {
@@ -692,13 +699,15 @@ body {
 			flex-direction: row;
 			h2 {
 				width: 16%;
-				font-weight: 100;
+				font-weight: 400;
 				font-size: 1rem;
 				line-height: 1.6rem;
 			}
+			input,
 			textarea {
 				outline: none;
 				resize: none;
+				font-weight: 600;
 				box-sizing: border-box;
 			}
 		}

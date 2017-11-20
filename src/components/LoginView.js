@@ -86,7 +86,7 @@ class LoginView extends React.Component {
 					</div>
 					<button action='submit' onClick={this._handleSubmit}>
 						{
-							this.props.user.loading ? <SearchElementLoader/> : 'Login'
+							this.props.user.loadingStatus === 'loading' ? <SearchElementLoader/> : 'Login'
 						}
 					</button>
 				</form>

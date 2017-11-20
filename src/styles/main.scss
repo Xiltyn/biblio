@@ -454,7 +454,7 @@ body {
 		border: none;
 		position: relative;
 		font-size: 1rem;
-		line-height: 1.2rem;
+		line-height: 1.4rem;
 		outline: none;
 		width: 80%;
 		color: #000;
@@ -463,6 +463,10 @@ body {
 		border-left: .4rem solid rgba(#2f88de, 0);
 		transition: all .3s ease-in-out;
 		pointer-events: none;
+		overflow-x: hidden;
+		&[name='description'] {
+			height: 5.6rem;
+		}
 		&::placeholder {
 			transition: all .3s ease-in-out;
 			font-weight: 600;
@@ -1190,6 +1194,31 @@ body {
 		padding: 1.6rem;
 		box-sizing: border-box;
 		box-shadow: 0 0 16px 0 rgba(0, 0, 0, .2);
+		.login-view-notification {
+			position: absolute;
+			top: -4.8rem;
+			left: 0;
+			font-size: 1rem;
+			width: 100%;
+			text-align: center;
+			background: #fff;
+			line-height: 1.4rem;
+			padding: .6rem .4rem .8rem;
+			box-sizing: border-box;
+			border-top: 4px solid #be1f1e;
+			transition: all .5s cubic-bezier(.94, .13, .43, 1.02);
+			opacity: 0;
+			pointer-events: none;
+			transform: translateY(-50px);
+		}
+		.invalid-email,
+		.invalid-password {
+			animation: .8s cubic-bezier(.94, .13, .43, 1.02) popOut 3s;
+			animation-fill-mode: forwards;
+			opacity: 1;
+			pointer-events: all;
+			transform: translateY(0);
+		}
 		.form-element {
 			display: flex;
 			flex-wrap: wrap;
@@ -1212,6 +1241,9 @@ body {
 				background: none;
 				border: 2px solid #0b88dd;
 				color: #0b88dd;
+			}
+			.error {
+				border: 2px solid #be1f1e
 			}
 		}
 		button {
@@ -1250,6 +1282,15 @@ body {
 				&:after {
 					width: 60%;
 					left: 20%;
+				}
+			}
+			.search-loader {
+				box-shadow: none;
+				height: 3.2rem;
+				width: auto;
+				margin: 0;
+				&:after {
+					display: none;
 				}
 			}
 		}

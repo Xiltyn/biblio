@@ -1,5 +1,5 @@
 import {auth} from "../firebase/firebase";
-import {GET_USER} from "../constants/ActionTypes";
+import {GET_USER, SET_LOADING_STATUS} from "../constants/ActionTypes";
 
 export const getUser = () => (dispatch) => {
 	auth.onAuthStateChanged(user => {
@@ -11,9 +11,23 @@ export const getUser = () => (dispatch) => {
 };
 
 export const login = (email, password) => (dispatch) => {
-	auth.signInWithEmailAndPassword(email, password).catch(err => console.log(err));
+	dispatch(setLoadingStatus('loading'));
+	auth.signInWithEmailAndPassword(email, password).catch(err => {
+		dispatch(setLoadingStatus(err.code));
+		console.warn(err)
+	});
 };
 
 export const logout = () => (dispatch) => {
-	auth.signOut().catch(err => console.log(err));
+	auth.signOut().catch(err => {
+		dispatch(setLoadingStatus(err.code));
+		console.warn(err)
+	});
+};
+
+const setLoadingStatus = (status) => {
+	return {
+		type: SET_LOADING_STATUS,
+		status: status
+	}
 };

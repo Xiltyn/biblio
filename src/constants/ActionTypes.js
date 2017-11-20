@@ -13,3 +13,5 @@ export const FETCH_DATA = 'FETCH_DATA';
 
 export const GET_USER = 'GET_USER';
 
+export const SET_LOADING_STATUS = 'SET_LOADING_STATUS';
+

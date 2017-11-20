@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {getUser, login} from "../actions/UserActions";
 import {Redirect} from "react-router";
+import SearchElementLoader from "./Search/SearchElementLoader";
 
 class LoginView extends React.Component {
 	constructor(props) {
@@ -9,7 +10,9 @@ class LoginView extends React.Component {
 
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			activeNotificationClassName: ''
+
 		};
 
 		this._handleSubmit = this._handleSubmit.bind(this);
@@ -17,7 +20,9 @@ class LoginView extends React.Component {
 
 	componentWillMount() {
 		this.props.getUser();
-		this.props.user.email ? this.props.history.push('/search') : null;
+		if(this.props.user.email) {
+			this.props.history.push('/search')
+		};
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -27,23 +32,62 @@ class LoginView extends React.Component {
 	_handleSubmit(event) {
 		event.preventDefault();
 		this.props.login(this.state.email, this.state.password);
-		console.log(this.state)
+		setTimeout(() => {
+			if (this.props.user.loadingStatus === 'auth/invalid-email') {
+				this.setState({
+					activeNotificationClassName: 'invalid-email'
+				});
+				setTimeout(() => {
+					this.setState({
+						activeNotificationClassName: ''
+					})
+				}, 4000)
+			} else if (this.props.user.loadingStatus === 'auth/wrong-password') {
+				this.setState({
+					activeNotificationClassName: 'invalid-password'
+				});
+				setTimeout(() => {
+					this.setState({
+						activeNotificationClassName: ''
+					})
+				}, 4000)
+			} else if (this.props.user.email) {
+				this.setState({
+					activeNotificationClassName: ''
+				})
+			}
+		}, 500)
 	}
 
 	render() {
+		console.log(this.props.user);
+
+
+		const notificationMessage	= () => this.props.user.loadingStatus === 'auth/invalid-email' ? 'Błędny email, upewnij się, że podałeś prawidłowe dane'  : this.props.user.loadingStatus === 'auth/wrong-password' ? 'Nieprawidłowe hasło, upewnij się, czy klawisz CapsLock nie jest włączony' : '';
+
+
 		return (
 			<div className="login-view">
+
 				<form action='submit' onSubmit={this._handleSubmit}>
+					{
+						this.state.activeNotificationClassName !== '' ? <div className={'login-view-notification ' + this.state.activeNotificationClassName}>
+							{notificationMessage()}
+						</div> : null
+					}
+
 					<div className="form-element">
-						<label htmlFor="user-login">Login</label><input type="text" name="user-login"
+						<label htmlFor="user-login">Login</label><input className={'' + this.props.user.loadingStatus === 'auth/invalid-email' ? 'error' : ''} type="text" name="user-login"
 									  onChange={evt => this.setState({email: evt.target.value})}/>
 					</div>
 					<div className="form-element">
-						<label htmlFor="user-password">Hasło</label><input type="password" name="user-password"
+						<label htmlFor="user-password">Hasło</label><input className={'' + this.props.user.loadingStatus === 'auth/wrong-password' ? 'error' : ''} type="password" name="user-password"
 									  onChange={evt => this.setState({password: evt.target.value})}/>
 					</div>
 					<button action='submit' onClick={this._handleSubmit}>
-						Login
+						{
+							this.props.user.loading ? <SearchElementLoader/> : 'Login'
+						}
 					</button>
 				</form>
 			</div>

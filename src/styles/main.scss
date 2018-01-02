@@ -655,12 +655,11 @@ body {
 				width: 32px;
 				font-size: 1.6rem;
 				height: 32px;
-				padding-top: .2rem;
-				padding-right: .2rem;
-				padding-left: .2rem;
+				margin-top: .1rem;
+				//padding-right: .2rem;
+				//padding-left: .2rem;
 				box-sizing: border-box;
 				background-color: rgba(#0b88dd, 0);
-				margin: 0;
 
 				color: rgba(#6b9df9, .2);
 				font-family: 'Fira Sans', cursive;
@@ -865,6 +864,7 @@ body {
 		.category {
 			position: relative;
 			transition: all .5s ease-in-out;
+			margin-top: 10px;
 			&-value,
 			input {
 				position: absolute;
@@ -877,7 +877,7 @@ body {
 				font-family: 'Fira Sans', cursive;
 				font-weight: 800;
 				background: none;
-				font-size: 7.2rem;
+				font-size: 3.6rem;
 				text-align: center;
 				text-transform: uppercase;
 				transform: scale(1);
@@ -891,18 +891,17 @@ body {
 				justify-content: center;
 				opacity: 0;
 				pointer-events: none;
-				margin-top: -.6rem;
+				margin-top: -.2rem;
 				box-sizing: border-box;
 				transform: scale(0);
 				transition: all .3s ease-out;
 				&-option {
-					width: 72px;
-					font-size: 4rem;
-					height: 72px;
-					padding-top: .2rem;
+					width: 32px;
+					font-size: 2.2rem;
+					height: 36px;
 					box-sizing: border-box;
 					background-color: rgba(#0b88dd, 0);
-					margin: 0;
+					line-height: 2.8rem;
 					color: rgba(#6b9df9, .2);
 					font-family: 'Fira Sans', cursive;
 					font-weight: 800;

@@ -98,15 +98,15 @@ export default class AddElement extends Component {
 							</div>
 							<CategorySelector dispatchChosenCategoryID={this._handleCategorySelector}/>
 							<div className="more-info">
-								<div className="search-result-more search-result-series"><h2>Seria:</h2><input type="text" onChange={this._handleInputs} name="series"/></div>
-								<div className="search-result-more search-result-publisher"><h2>Wydawca:</h2><input type="text" onChange={this._handleInputs} name="publisher"/></div>
-								<div className="search-result-more search-result-print"> <h2>Drukarnia:</h2><input type="text" onChange={this._handleInputs} name="printingHouse"/></div>
-								<div className="search-result-more search-result-format"><h2>Format:</h2> <input type="text" onChange={this._handleInputs} name="format"/></div>
-								<div className="search-result-more search-result-pages"><h2>Ilość stron:</h2> <input type="text" onChange={this._handleInputs} name="pages"/></div>
-								<div className="search-result-more search-result-appendices"><h2>Ilustracje:</h2> <input type="text" onChange={this._handleInputs} name="appendices"/></div>
-								<div className="search-result-more search-result-publishing-details"><h2>Opis oprawy:</h2><input type="text" onChange={this._handleInputs} name="publishingDetails"/> </div>
-								<div className="search-result-more search-result-autographs"><h2>Dedykacje:</h2><input type="text" onChange={this._handleInputs} name="autographs"/> </div>
-								<div className="search-result-more search-result-description"><h2>Informacje:</h2><input type="text" onChange={this._handleInputs} name="description"/> </div>
+								<div className="search-result-more search-result-series"><h2>Seria:</h2><textarea  onChange={this._handleInputs} name="series"/></div>
+								<div className="search-result-more search-result-publisher"><h2>Wydawca:</h2><textarea  onChange={this._handleInputs} name="publisher"/></div>
+								<div className="search-result-more search-result-print"> <h2>Drukarnia:</h2><textarea  onChange={this._handleInputs} name="printingHouse"/></div>
+								<div className="search-result-more search-result-format"><h2>Format:</h2> <textarea  onChange={this._handleInputs} name="format"/></div>
+								<div className="search-result-more search-result-pages"><h2>Ilość stron:</h2> <textarea  onChange={this._handleInputs} name="pages"/></div>
+								<div className="search-result-more search-result-appendices"><h2>Ilustracje:</h2> <textarea  onChange={this._handleInputs} name="appendices"/></div>
+								<div className="search-result-more search-result-publishing-details"><h2>Opis oprawy:</h2><textarea  onChange={this._handleInputs} name="publishingDetails"/> </div>
+								<div className="search-result-more search-result-autographs"><h2>Dedykacje:</h2><textarea  onChange={this._handleInputs} name="autographs"/> </div>
+								<div className="search-result-more search-result-description"><h2>Informacje:</h2><textarea  onChange={this._handleInputs} name="description"/> </div>
 								<div className="submit">
 									<button className="update-btn" type="submit" onClick={() => {this._notify('add-new')}}>
 										Zastosuj

@@ -32,12 +32,18 @@ export default class AddElement extends Component {
 
 	_handleSubmit() {
 		const newObjectFromModel = new Record(this.state.data, this.props.latestID);
-		this.props.callback ? this.props.callback(newObjectFromModel) : null;
+ 		this.props.callback ? this.props.callback(newObjectFromModel) : null;
 
-		this.setState({
-			isActive: false,
-			notifyAddNew: false
-		})
+ 		setTimeout( () => {
+            this.setState({
+                isActive: false,
+                notifyAddNew: false,
+                data: {}
+            });
+
+			console.log( "===> AddElement STATE :: ", this.state );
+		}, 500 )
+
 	};
 
 	_showDetails(evt) {
